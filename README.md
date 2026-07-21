@@ -1,10 +1,23 @@
 # Correlation Measurements Code Repository
 This repository contains the measurement plans, Jupyter notebooks, and data analysis pipelines for single-photon counting and correlation measurements.
 
-Hardware interfacing and data acquisition rely on the Swabian Time Tagger API. The measurement logic heavily utilizes the Correlation (for auto- and cross-correlation functions) and Counter (for count rates and histograms) classes. For detailed implementation mechanics regarding these functions, please refer to the official [Swabian Instruments documentation](https://www.swabianinstruments.com/static/documentation/TimeTagger/).
+Hardware connections and data acquisition use the Swabian Time Tagger API. In particular, the measurement logic utilizes the `Correlation` (for cross-correlation functions), `Countrates` and `Counter` classes. More information about these functions is found on the [Swabian Instruments documentation](https://www.swabianinstruments.com/static/documentation/TimeTagger/).
+
+## Dependencies & Installation
+
+To run the data analysis sections of these notebooks, you will need a standard Python scientific stack. 
+
+1. **Standard Packages:** Install the required Python libraries using the provided requirements file:
+   ```bash
+   pip install -r requirements.txt
+
+2. **Hardware API (Swabian Time Tagger):** The live measurement code requires the proprietary Time Tagger library, which must be downloaded directly from the [Swabian Instruments website](https://www.swabianinstruments.com/static/documentation/TimeTagger/). To set it up, install the core software and USB drivers, run `pip install Swabian-TimeTagger` in your environment, and connect the hardware to automatically fetch the license and begin taking measurements.
+
 
 ## Directory Structure
-To maintain a clean and scalable environment, the repository separates executable logic from heavy datasets:
+To maintain a clean and scalable environment, the repository separates executable logic from datasets. 
+The logic that carries out the measurements and data analysis are in a series of jupyter notebooks. 
+Each notebook is mapped to a dedicated dataset directory within `data/raw/` sharing the same name.
 
 ```text
 photon-measurements/
@@ -12,7 +25,7 @@ photon-measurements/
 ├── README.md              # Project mapping and documentation
 ├── data/
 │   └── raw/               # Local storage for all acquired .npy and .npz datasets
-└── notebooks/             # Jupyter notebooks for measurement plans and analysis
+└── notebooks/             # Jupyter notebooks for measurements and analysis
 ```
 
 ## Workflow & Usage
