@@ -37,34 +37,34 @@ Data Analysis (Bottom Sections): This is a dedicated, offline block where the ac
 
 Jupyter notebooks and their respective datasets are mapped bellow: 
 
-1. **`deadtime_afterpulsing (.ipynb and data)`**
-    - `autocorr_spad1_counts_note.npy`: Autocorrelation (``Correlation.getData``) data. `note` refers to the SPAD detector filters or covers used. 
+1. **`deadtime_afterpulsing.ipynb`**: A notebook to measure deadtime and afterpulsing based on correlation measurements.  
+    - `autocorr_spad1_counts_note.npy (data)`: Autocorrelation (``Correlation.getData``) data. `note` refers to the SPAD detector filters or covers used. 
     - `autocorr_time_ps.npy` saved in the corresponding lag time axis in picoseconds (`.getIndex`).
 
-2. **`photocount_statistics (.ipynb and data)`** 
-    - `photon_counts_spad#_laser###nm_Power#_Opticalfilter.npy`: Count histogram in a specified time window (``Counter.getData``). `Power#` refers to the power setting of the laser S1FC660 (e.g.05_00 corresponds to 5 mW). 
+2. **`photocount_statistics .ipynb`** : A notebook to measure the poissonian statistics of coherent light. 
+    - `photon_counts_spad#_laser###nm_Power#_Opticalfilter.npy (data)`: Count histogram in a specified time window (``Counter.getData``). `Power#` refers to the power setting of the laser S1FC660 (e.g.05_00 corresponds to 5 mW). 
 
-3. **`correlation_2ch_zerodelay (.ipynb and data)`**
-    - `pulsed###nm_#MHz_#Power`: Contains calibration, g^2(0) and g^2(t) measurement data for pulsed sources with  specified frequency.
-        + `calib_Ch#_Ch#_pulsed###nm_##Hz_res=##ps_run#`: ``Correlation.getData`` and  ``.getIndex`` arrays together with a lag value of 0 where the peak is located. 
-        + `uncalib_Ch#_Ch#_pulsed###nm_##Hz_res=##ps_run#`: ``Correlation.getData`` and  ``.getIndex`` arrays together with a lag value where the peak is located. 
-        + `g2_meas_pulsed###nm_##Hz_jitter=###ps_run#`: Contains the value of the g^2(0) measurement together with raw_counts, raw_coincidences, events_a, events_b, total_pulses, coincidences, p_a, p_b, p_ab, g2_0, coinc_window_ps. This forms the results of measurement plan 1. 
+3. **`correlation_2ch_zerodelay.ipynb`**: A notebook to measure 2 channel coincidences and calculates the g^2(0) function.
+    - `pulsed###nm_#MHz_#Power (data)`: Contains calibration, g^2(0) and g^2(t) measurement data for pulsed sources with  specified frequency.
+        + `calib_Ch#_Ch#_pulsed###nm_##Hz_res=##ps_run# (data)`: ``Correlation.getData`` and  ``.getIndex`` arrays together with a lag value of 0 where the peak is located. 
+        + `uncalib_Ch#_Ch#_pulsed###nm_##Hz_res=##ps_run# (data)`: ``Correlation.getData`` and  ``.getIndex`` arrays together with a lag value where the peak is located. 
+        + `g2_meas_pulsed###nm_##Hz_jitter=###ps_run# (data)`: Contains the value of the g^2(0) measurement together with raw_counts, raw_coincidences, events_a, events_b, total_pulses, coincidences, p_a, p_b, p_ab, g2_0, coinc_window_ps. This forms the results of measurement plan 1. 
 
-4. **`correlation_2ch (.ipynb and data)`**
+4. **`correlation_2ch.ipynb`**: A notebook to measure 2 channel coincidences and calculates the g^2(t) function. 
     - `g2_tau_measurement_Pulsed_##MHz_###cps_bin=####ps.npz`: ``Correlation.getData`` and  ``.getIndex`` arrays. 
     - `data_coincidence_meas_run1_ThermalSources_g2`: g^2(t) measurement data for thermal sources: Lab Lamp and Thermal Lamp
         + `g2_tau_measurement_Source_##MHz_###cps_bin=####ps`: ``Correlation.getData`` and  ``.getIndex`` arrays. 
 
-5. **`decorrelation_11ch (.ipynb and data)`**
+5. **`decorrelation_11ch.ipynb`**: A notebook to measure decorrelation times of a speckle field with one time tagger. 
     - `spad_line_data_run#`
         + `g2_ch#_ch#_filter-wavelen-source-velocity`: Series of correlation measurements. Counts (.getData) and lags (.getIndex) are bundled inside the zip file (e.g. results[pair]['time']).
 
-6. **`correlation_15ch (.ipynb and data)`**  (check)
-    -  `data_cw_correlations_run#`
-        + `autocorr_raw_ch#.npy`: Autocorrelation (``Correlation.getData``) data for channels 1-15. **`autocorr_lags.npy`** is the corresponding lag time axis in picoseconds (`.getIndex`).
-        + `g2_raw_ch#_ch#`: Correlation between channels (``Correlation.getData``). **`g2_lags`** its lag time axis in picoseconds. 
-        + `photon_counts_ch#`: Histogram of the number of detections that arrive in a time window.
+6. **`decorrelation_24ch.ipynb`**: A notebook to measure decorrelation times of a speckle field with two time taggers.
+    -  `spad_line_data_run#`
+        + `g2_ch#_ch#_countrate-specklesize-wavelength-velocity`: Series of correlation measurements. Counts (.getData) and lags (.getIndex) are bundled inside the zip file (['histogram'] ['time']).
 
+7. **`decorrelation.ipynb`**: A notebook that replicates the results of this [paper]{https://opg.optica.org/boe/fulltext.cfm?uri=BOE-14-2-703}.
+    - `raw_autocorr_20260807_200133`: 3D array of periods, channels and bins. The ['tau_axis'] label contains the one-dimensional array of time delay values. The ['raw_hists'] label contains the three-dimensional array of unnormalized photon counts for each measurement period, pixel channel, and time bin.
 
 7. `live_cps_counter.ipynb`
     - No data saved.
